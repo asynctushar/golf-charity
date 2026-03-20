@@ -47,19 +47,74 @@ Database (PostgreSQL via Prisma + Supabase)
 
 ### 3. Draw Engine
 
-#### Draw Lifecycle
-1. Announced → estimated data shown
-2. Locked (1 day before draw date) → final participants & pool
-3. Executed → numbers generated and winners calculated
+#### Draw Configuration
+- Admin can configure draw settings:
+  - draw type: random (implemented) or algorithmic (future-ready)
+  - draw date (monthly cadence)
+- System is designed to support both:
+  - Random generation (lottery-style)
+  - Algorithmic weighting (based on score frequency)
 
-#### Logic
-- Draw generates 5 random numbers (1–45)
-- Matching logic:
+---
+
+#### Draw Lifecycle
+
+Each draw follows a controlled lifecycle:
+
+1. Announced
+   - Upcoming draw is visible to users
+   - Estimated participants and prize pool displayed
+
+2. Locked (1 day before draw date)
+   - Final participants and prize pool are calculated
+   - Eligibility criteria:
+     - active subscription
+     - valid subscription period
+     - at least one score
+   - Data is frozen to ensure fairness
+
+3. Simulation (Pre-analysis)
+   - Admin can run test simulations of draw logic
+   - Helps validate draw configuration before publishing results
+   - Does not affect actual draw data
+
+4. Executed
+   - System generates 5 numbers
+   - Matching logic applied against user scores
+   - Winners are determined
+
+5. Published
+   - Admin publishes draw results
+   - Results become visible to users
+   - Ensures control over timing and validation
+
+---
+
+#### Draw Logic
+
+- Default implementation: random number generation (1–45)
+- Matching rules:
   - 5 matches → jackpot
   - 4 matches → tier 2
   - 3 matches → tier 3
 
 ---
+
+#### Monthly Cadence
+
+- Draws occur once per month
+- Each draw is uniquely identified by month/year
+- Historical draws are stored and viewable
+
+---
+
+#### Jackpot Rollover
+
+- If no 5-match winner:
+  - jackpot amount is carried forward to next draw
+- Stored as:
+  - `jackpotCarryForward` in draw table
+
 
 ### 4. Prize Pool System
 - Pool derived from active subscribers at lock time

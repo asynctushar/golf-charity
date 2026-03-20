@@ -42,7 +42,7 @@
 ## Draw Lifecycle Flow
 
 ### Phase 1: Announced
-14. Upcoming draw is visible
+14. Upcoming monthly draw is visible
 15. System shows:
     - estimated participants
     - estimated prize pool
@@ -53,41 +53,47 @@
 16. System locks:
     - eligible participants
     - prize pool
-17. No further changes allowed
+17. No further changes affect this draw
 
 ---
 
-### Phase 3: Execution
-18. Admin runs draw
-19. System generates 5 numbers
-20. Matching logic executed
+### Phase 3: Simulation (Admin Only)
+18. Admin can run simulation of draw logic
+19. Used for validation and testing
 
 ---
 
-## Winner Flow
-
-21. Winners identified
-22. Records created (status: pending)
-23. User sees result in dashboard
+### Phase 4: Execution
+20. Admin runs draw
+21. System generates 5 numbers
+22. Matching logic executed
 
 ---
+
+### Phase 5: Publish
+23. Admin publishes results
+24. Users can view:
+    - draw numbers
+    - winners
+    - prize distribution
+
 
 ## Verification Flow
 
-24. User uploads proof (optional)
-25. Admin reviews submission
-26. Admin approves/rejects
+25. User uploads proof (optional)
+26. Admin reviews submission
+27. Admin approves/rejects
 
 ---
 
 ## Payout Flow
 
-27. Approved winners marked as "paid"
+28. Approved winners marked as "paid"
 
 ---
 
 ## Charity Flow
 
-28. Contribution deducted during subscription
-29. Applied to selected charity
-30. Updates apply from next billing cycle
+29. Contribution deducted during subscription
+30. Applied to selected charity
+31. Updates apply from next billing cycle

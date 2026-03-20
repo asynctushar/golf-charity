@@ -91,3 +91,40 @@ The system focuses on core features:
 - admin controls
 
 Advanced features are excluded to ensure quality delivery within time constraints.
+
+---
+
+## 12. Draw Logic Flexibility
+
+System is designed to support both:
+- Random draw (implemented)
+- Algorithm-based weighted draw (future scope)
+
+Due to time constraints, only random logic is implemented, while keeping architecture extensible.
+
+---
+
+## 13. Simulation Mode Scope
+
+Simulation mode is included as a conceptual feature:
+- Allows admin to test draw logic before publishing
+- Implemented as a non-persistent or simplified preview in MVP
+
+---
+
+## 14. Result Publishing Control
+
+Draw results are not immediately visible after execution.
+Admin must explicitly publish results.
+
+This ensures:
+- validation of results
+- controlled release of information
+- better administrative control
+
+---
+
+## 15. Monthly Draw Cadence
+
+Draws are scheduled monthly.
+Each draw is associated with a specific month and stored for historical tracking and user visibility.

@@ -10,7 +10,6 @@ Draw participation is based on score matching rather than contribution amount, e
 
 Each draw follows a 3-phase lifecycle:
 - Announced → dynamic estimates shown
-- Locked (1 day before draw date) → participants and pool finalized
 - Executed → results generated
 
 This ensures fairness, consistency, and prevents last-minute changes affecting results.
@@ -21,7 +20,6 @@ This ensures fairness, consistency, and prevents last-minute changes affecting r
 
 Users are eligible for a draw if:
 - subscription is active
-- currentPeriodEnd is valid
 - user has at least one score
 
 Eligibility is evaluated at lock time.
@@ -30,7 +28,7 @@ Eligibility is evaluated at lock time.
 
 ## 4. Contribution Updates
 
-Users can modify contribution percentage anytime, but changes apply from the next billing cycle to avoid inconsistencies.
+Users can modify contribution percentage anytime.
 
 ---
 
@@ -47,30 +45,24 @@ Only one proof upload is required per winner to reduce complexity.
 
 ---
 
-## 7. Draw Logic Scope
-
-Only random draw logic is implemented for MVP.
-Algorithm-based weighted draw is excluded.
-
 ---
 
-## 8. Admin-Controlled Execution
+## 7. Admin-Controlled Execution
 
 Draw execution is manually triggered by admin to ensure control and prevent unintended runs.
 
 ---
 
-## 9. Subscription Validation
+## 8. Subscription Validation
 
 Access control is enforced using:
 - subscriptionStatus
-- currentPeriodEnd
 
 This avoids frequent Stripe API calls and ensures real-time validation.
 
 ---
 
-## 10. Visibility & Transparency
+## 9. Visibility & Transparency
 
 Users can view:
 - past draw results
@@ -97,10 +89,8 @@ Advanced features are excluded to ensure quality delivery within time constraint
 ## 12. Draw Logic Flexibility
 
 System is designed to support both:
-- Random draw (implemented)
-- Algorithm-based weighted draw (future scope)
-
-Due to time constraints, only random logic is implemented, while keeping architecture extensible.
+- Random draw
+- Algorithm-based weighted draw
 
 ---
 

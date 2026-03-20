@@ -49,30 +49,22 @@
 
 ---
 
-### Phase 2: Locked (1 day before draw)
-16. System locks:
-    - eligible participants
-    - prize pool
-17. No further changes affect this draw
+### Phase 2: Simulation (Admin Only)
+16. Admin can run simulation of draw logic
+17. Used for validation and testing
 
 ---
 
-### Phase 3: Simulation (Admin Only)
-18. Admin can run simulation of draw logic
-19. Used for validation and testing
+### Phase 3: Execution
+18. Admin runs draw
+19. System generates 5 numbers
+20. Matching logic executed
 
 ---
 
-### Phase 4: Execution
-20. Admin runs draw
-21. System generates 5 numbers
-22. Matching logic executed
-
----
-
-### Phase 5: Publish
-23. Admin publishes results
-24. Users can view:
+### Phase 4: Publish
+21. Admin publishes results
+22. Users can view:
     - draw numbers
     - winners
     - prize distribution
@@ -80,20 +72,20 @@
 
 ## Verification Flow
 
-25. User uploads proof (optional)
-26. Admin reviews submission
-27. Admin approves/rejects
+23. User uploads proof (optional)
+24. Admin reviews submission
+25. Admin approves/rejects
 
 ---
 
 ## Payout Flow
 
-28. Approved winners marked as "paid"
+26. Approved winners marked as "paid"
 
 ---
 
 ## Charity Flow
 
-29. Contribution deducted during subscription
-30. Applied to selected charity
-31. Updates apply from next billing cycle
+27. Contribution deducted during subscription
+28. Applied to selected charity
+29. Updates apply from next billing cycle

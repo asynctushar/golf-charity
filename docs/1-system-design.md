@@ -65,25 +65,17 @@ Each draw follows a controlled lifecycle:
    - Upcoming draw is visible to users
    - Estimated participants and prize pool displayed
 
-2. Locked (1 day before draw date)
-   - Final participants and prize pool are calculated
-   - Eligibility criteria:
-     - active subscription
-     - valid subscription period
-     - at least one score
-   - Data is frozen to ensure fairness
-
-3. Simulation (Pre-analysis)
+2. Simulation (Pre-analysis)
    - Admin can run test simulations of draw logic
    - Helps validate draw configuration before publishing results
    - Does not affect actual draw data
 
-4. Executed
+3. Executed
    - System generates 5 numbers
    - Matching logic applied against user scores
    - Winners are determined
 
-5. Published
+4. Published
    - Admin publishes draw results
    - Results become visible to users
    - Ensures control over timing and validation
@@ -117,7 +109,7 @@ Each draw follows a controlled lifecycle:
 
 
 ### 4. Prize Pool System
-- Pool derived from active subscribers at lock time
+- Pool derived from active subscribers
 - Distribution:
   - 40% → 5-match (jackpot)
   - 35% → 4-match
@@ -159,7 +151,6 @@ Each draw follows a controlled lifecycle:
 - stripeCustomerId
 - stripeSubscriptionId
 - subscriptionStatus
-- currentPeriodEnd
 
 #### scores
 - id
@@ -171,11 +162,11 @@ Each draw follows a controlled lifecycle:
 - id
 - numbers
 - drawDate
-- lockDate
 - totalPool
 - participantsCount
+- type (random, algorithm-based)
 - jackpotCarryForward
-- status (announced, locked, completed)
+- status (announced, completed)
 
 #### winners
 - id

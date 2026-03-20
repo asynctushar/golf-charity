@@ -146,6 +146,7 @@ Each draw follows a controlled lifecycle:
 - id
 - email
 - role
+- name
 - charityId
 - contributionPercentage
 - stripeCustomerId

@@ -118,3 +118,12 @@ This ensures:
 
 Draws are scheduled monthly.
 Each draw is associated with a specific month and stored for historical tracking and user visibility.
+
+## 16. Role and Subscription Separation
+
+Admin roles don't require subscription and admins are created directly on database.
+
+- Role determines access control (dashboard vs admin panel)
+- Subscription are mandetory for client side registration
+
+Admins are excluded from draw participation to ensure fairness and prevent conflicts of interest.

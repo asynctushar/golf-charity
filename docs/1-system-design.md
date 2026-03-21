@@ -176,6 +176,8 @@ Each draw follows a controlled lifecycle:
 - matchCount
 - prizeAmount
 - status
+- proof
+- proofStatus
 
 #### charities
 - id

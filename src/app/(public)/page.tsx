@@ -1,6 +1,5 @@
-import React from 'react';
+const Home = async () => {
 
-const Home = () => {
     return (
         <div>Home</div>
     );

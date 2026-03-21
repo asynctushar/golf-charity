@@ -1,0 +1,116 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id                       String   @id @default(cuid())
+  email                    String   @unique
+  name                     String?
+
+  role                     Role     @default(USER)
+
+  charityId                String?
+  charity                  Charity? @relation(fields: [charityId], references: [id])
+
+  contributionPercentage   Int?      @default(10)
+
+  stripeCustomerId         String?
+  stripeSubscriptionId     String?
+  subscriptionStatus       SubscriptionStatus? @default(INACTIVE)
+
+  scores                   Score[]
+  winners                  Winner[]
+
+  createdAt                DateTime @default(now())
+  updatedAt                DateTime @updatedAt
+}
+
+model Score {
+  id        String   @id @default(cuid())
+  userId    String
+  value     Int
+  date      DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+}
+
+model Draw {
+  id                    String      @id @default(cuid())
+  numbers               Int[]
+  drawDate              DateTime
+
+  totalPool             Decimal     @db.Decimal(10, 2)
+  participantsCount     Int
+  jackpotCarryForward   Decimal     @default(0) @db.Decimal(10, 2)
+
+  status                DrawStatus  @default(ANNOUNCED)
+
+  winners               Winner[]
+
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt @default(now())
+}
+
+model Winner {
+  id           String        @id @default(cuid())
+  userId       String
+  drawId       String
+
+  matchCount   Int
+  prizeAmount  Decimal       @db.Decimal(10, 2)
+
+  status       WinnerStatus  @default(PENDING)
+
+  proof        String?
+  proofStatus  ProofStatus   @default(PENDING)
+
+  user         User          @relation(fields: [userId], references: [id])
+  draw         Draw          @relation(fields: [drawId], references: [id])
+
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt @default(now())
+}
+
+model Charity {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  image       String?
+
+  users       User[]
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  INACTIVE
+  CANCELED
+}
+
+enum DrawStatus {
+  ANNOUNCED
+  COMPLETED
+  PUBLISHED
+}
+
+enum WinnerStatus {
+  PENDING
+  PAID
+}
+
+enum ProofStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}

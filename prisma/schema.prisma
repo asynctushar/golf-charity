@@ -8,37 +8,49 @@ datasource db {
 }
 
 model User {
-  id                       String   @id @default(cuid())
-  email                    String   @unique
-  name                     String?
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  role      Role     @default(USER)
 
-  role                     Role     @default(USER)
+  subscriber Subscriber?
 
-  charityId                String?
-  charity                  Charity? @relation(fields: [charityId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
 
-  contributionPercentage   Int?      @default(10)
+model Subscriber {
+  id                     String   @id @default(cuid())
 
-  stripeCustomerId         String?
-  stripeSubscriptionId     String?
-  subscriptionStatus       SubscriptionStatus? @default(INACTIVE)
+  userId                 String   @unique
+  user                   User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  scores                   Score[]
-  winners                  Winner[]
+  charityId              String?
+  charity                Charity? @relation(fields: [charityId], references: [id])
 
-  createdAt                DateTime @default(now())
-  updatedAt                DateTime @updatedAt
+  contributionPercentage Int      @default(10)
+
+  stripeCustomerId       String?
+  stripeSubscriptionId   String?
+  subscriptionStatus     SubscriptionStatus @default(INACTIVE)
+
+  scores                 Score[]
+  winners                Winner[]
+
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
 }
 
 model Score {
-  id        String   @id @default(cuid())
-  userId    String
-  value     Int
-  date      DateTime @default(now())
+  id            String   @id @default(cuid())
+  value         Int
+  date          DateTime @default(now())
 
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subscriberId  String
+  subscriber    Subscriber @relation(fields: [subscriberId], references: [id], onDelete: Cascade)
 
-  createdAt DateTime @default(now())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }
 
 model Draw {
@@ -55,36 +67,37 @@ model Draw {
   winners               Winner[]
 
   createdAt             DateTime @default(now())
-  updatedAt             DateTime @updatedAt @default(now())
+  updatedAt             DateTime @updatedAt
 }
 
 model Winner {
-  id           String        @id @default(cuid())
-  userId       String
-  drawId       String
+  id            String        @id @default(cuid())
 
-  matchCount   Int
-  prizeAmount  Decimal       @db.Decimal(10, 2)
+  subscriberId  String
+  drawId        String
 
-  status       WinnerStatus  @default(PENDING)
+  matchCount    Int
+  prizeAmount   Decimal       @db.Decimal(10, 2)
 
-  proof        String?
-  proofStatus  ProofStatus   @default(PENDING)
+  status        WinnerStatus  @default(PENDING)
 
-  user         User          @relation(fields: [userId], references: [id])
-  draw         Draw          @relation(fields: [drawId], references: [id])
+  proof         String?
+  proofStatus   ProofStatus   @default(PENDING)
 
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt @default(now())
+  subscriber    Subscriber    @relation(fields: [subscriberId], references: [id], onDelete: Cascade)
+  draw          Draw          @relation(fields: [drawId], references: [id])
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }
 
 model Charity {
-  id          String   @id @default(cuid())
-  name        String
-  description String?
-  image       String?
+  id           String   @id @default(cuid())
+  name         String
+  description  String?
+  image        String?
 
-  users       User[]
+  subscribers  Subscriber[]
 }
 
 enum Role {

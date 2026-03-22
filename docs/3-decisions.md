@@ -2,7 +2,7 @@
 
 ## 1. Draw Fairness
 
-Draw participation is based on score matching rather than contribution amount, ensuring equal opportunity for all users.
+Draw participation is based on score matching rather than contribution amount, ensuring equal opportunity for all subscribers.
 
 ---
 
@@ -12,17 +12,17 @@ Each draw follows a 3-phase lifecycle:
 - Announced → dynamic estimates shown
 - Executed → results generated
 
-This ensures fairness, consistency, and prevents last-minute changes affecting results.
+This ensures fairness, consistency, and even last-minute changes may affecting results.
 
 ---
 
 ## 3. Eligibility Criteria
 
-Users are eligible for a draw if:
+Subscribers are eligible for a draw if:
 - subscription is active
-- user has at least one score
+- subscriber has at least one score
 
-Eligibility is evaluated at lock time.
+Eligibility is evaluated at final draw time.
 
 ---
 
@@ -45,8 +45,6 @@ Only one proof upload is required per winner to reduce complexity.
 
 ---
 
----
-
 ## 7. Admin-Controlled Execution
 
 Draw execution is manually triggered by admin to ensure control and prevent unintended runs.
@@ -64,10 +62,10 @@ This avoids frequent Stripe API calls and ensures real-time validation.
 
 ## 9. Visibility & Transparency
 
-Users can view:
+Subscribers can view:
 - past draw results
 - winning numbers
-- winner summaries (masked identities)
+- winner summaries
 
 This improves trust and engagement.
 
@@ -121,9 +119,10 @@ Each draw is associated with a specific month and stored for historical tracking
 
 ## 16. Role and Subscription Separation
 
-Admin roles don't require subscription and admins are created directly on database.
+Admin roles don't require subscription and admin role are created on database afterward signup(instead of subscription, customize the role on DB).
 
 - Role determines access control (dashboard vs admin panel)
-- Subscription are mandetory for client side registration
+- Subscription are mandetory for Subscriber
+- Admins don't require subscription and don't see any subscriber's features.
 
 Admins are excluded from draw participation to ensure fairness and prevent conflicts of interest.

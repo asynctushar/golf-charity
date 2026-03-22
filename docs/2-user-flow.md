@@ -12,9 +12,9 @@
 ## Registration & Subscription Flow
 
 5. User creates account
-6. Selects charity
-7. Chooses contribution %
-8. Completes Stripe payment
+6. Completes Stripe payment
+7. Selects charity
+8. Chooses contribution %
 9. Redirected to dashboard
 
 ---
@@ -88,4 +88,3 @@
 
 27. Contribution deducted during subscription
 28. Applied to selected charity
-29. Updates apply from next billing cycle

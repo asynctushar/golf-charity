@@ -35,7 +35,7 @@ Database (PostgreSQL via Prisma + Supabase)
 ---
 
 ### 2. Score Management System
-- Each user can store a maximum of 5 scores
+- Each subscriber can store a maximum of 5 scores
 - Each score includes:
   - value (1–45)
   - date
@@ -62,7 +62,7 @@ Database (PostgreSQL via Prisma + Supabase)
 Each draw follows a controlled lifecycle:
 
 1. Announced
-   - Upcoming draw is visible to users
+   - Upcoming draw is visible to subscribers
    - Estimated participants and prize pool displayed
 
 2. Simulation (Pre-analysis)
@@ -72,12 +72,12 @@ Each draw follows a controlled lifecycle:
 
 3. Executed
    - System generates 5 numbers
-   - Matching logic applied against user scores
+   - Matching logic applied against subscriber's scores
    - Winners are determined
 
 4. Published
    - Admin publishes draw results
-   - Results become visible to users
+   - Results become visible to subscribers
    - Ensures control over timing and validation
 
 ---
@@ -119,16 +119,15 @@ Each draw follows a controlled lifecycle:
 ---
 
 ### 5. Charity System
-- Users select a charity during signup
+- Subscribers select a charity during subscription
 - Contribution percentage (minimum 10%)
 - Applied at subscription payment level
-- Changes apply from next billing cycle
 
 ---
 
 ### 6. Winner Management System
 - Winners stored with:
-  - userId
+  - subscriberId
   - drawId
   - matchCount
   - prizeAmount
@@ -147,6 +146,10 @@ Each draw follows a controlled lifecycle:
 - email
 - role
 - name
+
+#### subscribers
+- id
+- userId
 - charityId
 - contributionPercentage
 - stripeCustomerId
@@ -155,7 +158,7 @@ Each draw follows a controlled lifecycle:
 
 #### scores
 - id
-- userId
+- subscriberId
 - value
 - date
 
@@ -171,7 +174,7 @@ Each draw follows a controlled lifecycle:
 
 #### winners
 - id
-- userId
+- subscriberId
 - drawId
 - matchCount
 - prizeAmount
